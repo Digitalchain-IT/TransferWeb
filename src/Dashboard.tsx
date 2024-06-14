@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 interface Wallet {
-  id: string;
-  name: string;
-  balance: number;
+  wallet_id: string;
+  bankname: string;
+  currency: string;
+  amount: string;
 }
 
 const Dashboard: React.FC = () => {
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Fetch wallets data (simulated here with hardcoded data)
     const fetchWallets = async () => {
-      const walletData: Wallet[] = [
-        { id: '1', name: 'Wallet 1', balance: 500 },
-        { id: '2', name: 'Wallet 2', balance: 1500 },
-        { id: '3', name: 'Wallet 3', balance: 250 },
-      ];
-      setWallets(walletData);
+      const customerId = localStorage.getItem('customer_id');
+      if (customerId) {
+        try {
+          const response = await axios.get(`http://127.0.0.1:3000/customer-wallets/${customerId}`);
+          setWallets(response.data);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error fetching wallets:', error);
+          setLoading(false);
+        }
+      }
     };
 
     fetchWallets();
@@ -64,8 +71,8 @@ const Dashboard: React.FC = () => {
   };
 
   const handleLogout = () => {
-    // Logic to handle logout
-    alert('Logged out');
+    localStorage.removeItem('customer_id');
+    window.location.href = '/login';
   };
 
   return (
@@ -73,32 +80,33 @@ const Dashboard: React.FC = () => {
       <header style={styles.header}>Dashboard</header>
       <div>
         <h2>Select a Wallet</h2>
-        <ul style={styles.walletList}>
-          {wallets.map(wallet => (
-            <li
-              key={wallet.id}
-              style={{
-                ...styles.walletItem,
-                ...(selectedWallet && selectedWallet.id === wallet.id
-                  ? styles.walletItemSelected
-                  : {}),
-              }}
-              onClick={() => handleWalletSelect(wallet)}
-            >
-              {wallet.name} - ${wallet.balance}
-            </li>
-          ))}
-        </ul>
+        {loading ? (
+          <p>Loading wallets...</p>
+        ) : (
+          <ul style={styles.walletList}>
+            {wallets.map(wallet => (
+              <li
+                key={wallet.wallet_id}
+                style={{
+                  ...styles.walletItem,
+                  ...(selectedWallet && selectedWallet.wallet_id === wallet.wallet_id
+                    ? styles.walletItemSelected
+                    : {}),
+                }}
+                onClick={() => handleWalletSelect(wallet)}
+              >
+                {wallet.bankname} - {wallet.currency} {wallet.amount}
+              </li>
+            ))}
+          </ul>
+        )}
         {selectedWallet && (
           <div>
             <h3>Selected Wallet:</h3>
-            <p>{selectedWallet.name} - ${selectedWallet.balance}</p>
+            <p>{selectedWallet.bankname} - {selectedWallet.currency} {selectedWallet.amount}</p>
           </div>
         )}
       </div>
-      <button style={styles.logoutButton} onClick={handleLogout}>
-        Logout
-      </button>
     </div>
   );
 };

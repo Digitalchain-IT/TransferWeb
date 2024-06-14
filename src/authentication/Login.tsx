@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
+import axios from 'axios';
 import Modal from './Modal';
 
 const Login: React.FC = () => {
@@ -7,7 +8,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [, setLocation] = useLocation(); // useLocation hook to navigate
+  const [, setLocation] = useLocation();
 
   const styles = {
     container: {
@@ -71,37 +72,29 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     const credentials = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
 
-    // Check if credentials are 'admin' for both email and password
-    if (credentials.email === 'admin' && credentials.password === 'admin') {
-      setMessage('Login successful!');
-      setLocation('/dashboard'); // Redirect to dashboard route
-      return;
-    }
-
     try {
-      const response = await fetch('http://127.0.0.1:3000/login', {
-        method: 'POST',
+      const response = await axios.post('http://127.0.0.1:3000/login', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials),
       });
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.status === 200) {
+        const { user } = response.data;
+        localStorage.setItem('customer_id', user.customer_id);
         setMessage('Login successful!');
-        setLocation('/dashboard'); // Assuming you have a dashboard route
+        setLocation('/dashboard');
       } else {
-        setMessage(data.error || 'Login failed');
-        setShowModal(true); // Show modal with error message
+        setMessage(response.data.error || 'Login failed');
+        setShowModal(true);
       }
     } catch (error) {
       setMessage('An error occurred. Please try again.');
-      setShowModal(true); // Show modal with error message
+      setShowModal(true);
     }
   };
 
@@ -129,9 +122,9 @@ const Login: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <a href="#" style={styles.link}>
+          <a href="#" style={styles.link}>
             Forgot password?
-          </a> */}
+          </a>
           <input
             type="submit"
             className="button"
@@ -141,6 +134,14 @@ const Login: React.FC = () => {
             onMouseOut={(e) => ((e.target as HTMLInputElement).style.background = styles.button.background)}
           />
         </form>
+        <div className="signup" style={styles.signup}>
+          <span className="signup">
+            Don't have an account?
+            <Link href="/signup" style={styles.link}>
+              Signup
+            </Link>
+          </span>
+        </div>
       </div>
       {showModal && <Modal message={message} onClose={closeModal} />}
     </div>
