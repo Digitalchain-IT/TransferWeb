@@ -7,12 +7,14 @@ interface WalletCardProps {
     currency: string;
     amount: string;
   };
+  onSelect: (walletId: string) => void;
+  isSelected: boolean;
 }
 
-const WalletCard: React.FC<WalletCardProps> = ({ wallet }) => {
+const WalletCard: React.FC<WalletCardProps> = ({ wallet, onSelect, isSelected }) => {
   const styles = {
     card: {
-      backgroundColor: '#18181b',
+      backgroundColor: isSelected ? '#2d2d2d' : '#18181b',
       color: '#a1a1aa',
       padding: '20px',
       borderRadius: '10px',
@@ -24,6 +26,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet }) => {
       justifyContent: 'space-between' as 'space-between',
       position: 'relative' as 'relative',
       overflow: 'hidden' as 'hidden',
+      cursor: 'pointer' as 'pointer',
     },
     bankname: {
       fontSize: '1.5rem',
@@ -40,7 +43,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ wallet }) => {
   };
 
   return (
-    <div style={styles.card}>
+    <div style={styles.card} onClick={() => onSelect(wallet.wallet_id)}>
       <div style={styles.bankname}>{wallet.bankname}</div>
       <div style={styles.details}>
         <span>{wallet.currency}</span>

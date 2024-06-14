@@ -35,10 +35,19 @@ const Dashboard: React.FC = () => {
     setSelectedWallet(wallet);
   };
 
+  const handleSubmit = () => {
+    if (selectedWallet) {
+      console.log('Selected Wallet:', selectedWallet);
+      // Add your submit logic here
+    }
+  };
+
   const styles = {
     container: {
       padding: '2rem',
       textAlign: 'center' as 'center',
+      position: 'relative' as 'relative',
+      minHeight: '100vh',
     },
     header: {
       fontSize: '2rem',
@@ -59,6 +68,21 @@ const Dashboard: React.FC = () => {
     walletItemSelected: {
       background: '#d0d0d0',
     },
+    submitButton: {
+      marginTop: '1rem',
+      padding: '15px 30px',
+      background: '#ffffff',
+      color: '#05668D',
+      border: '2px solid #05668D',
+      borderRadius: '10px',
+      cursor: 'pointer',
+      fontSize: '1.2rem',
+      fontWeight: 'bold' as 'bold',
+      position: 'absolute' as 'absolute',
+      bottom: '20px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
     logoutButton: {
       marginTop: '1rem',
       padding: '10px 20px',
@@ -77,7 +101,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <header style={styles.header}>Dashboard</header>
+      <header style={styles.header}>Complete Transfer</header>
       <div>
         <h2>Select a Wallet</h2>
         {loading ? (
@@ -104,6 +128,9 @@ const Dashboard: React.FC = () => {
           <div>
             <h3>Selected Wallet:</h3>
             <p>{selectedWallet.bankname} - {selectedWallet.currency} {selectedWallet.amount}</p>
+            <button style={styles.submitButton} onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
         )}
       </div>
