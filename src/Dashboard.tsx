@@ -114,6 +114,46 @@ const Dashboard: React.FC = () => {
         window.location.href = '/login';
     };
 
+  return (
+    <>
+      <div style={styles.container}>
+        <header style={styles.header}>Complete Transfer</header>
+        <div>
+          <h2>Select a Wallet</h2>
+          {loading ? (
+            <p>Loading wallets...</p>
+          ) : (
+            <ul style={styles.walletList}>
+              {wallets.map(wallet => (
+                <li
+                  key={wallet.wallet_id}
+                  style={{
+                    ...styles.walletItem,
+                    ...(selectedWallet && selectedWallet.wallet_id === wallet.wallet_id
+                      ? styles.walletItemSelected
+                      : {}),
+                  }}
+                  onClick={() => handleWalletSelect(wallet)}
+                >
+                  {wallet.bankname} - {wallet.currency} {wallet.amount}
+                </li>
+              ))}
+            </ul>
+          )}
+          {selectedWallet && (
+            <div>
+              <h3>Selected Wallet:</h3>
+              <p>{selectedWallet.bankname} - {selectedWallet.currency} {selectedWallet.amount}</p>
+              <button style={styles.submitButton} onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          )}
+        </div>
+        <TransferForm />
+      </div>
+    </>
+  );
     return (
         <>
             <div style={styles.container}>
