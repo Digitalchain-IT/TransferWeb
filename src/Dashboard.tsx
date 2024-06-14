@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TransferForm from './TransferForm';
 
 interface Wallet {
   id: string;
@@ -69,37 +70,40 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>Dashboard</header>
-      <div>
-        <h2>Select a Wallet</h2>
-        <ul style={styles.walletList}>
-          {wallets.map(wallet => (
-            <li
-              key={wallet.id}
-              style={{
-                ...styles.walletItem,
-                ...(selectedWallet && selectedWallet.id === wallet.id
-                  ? styles.walletItemSelected
-                  : {}),
-              }}
-              onClick={() => handleWalletSelect(wallet)}
-            >
-              {wallet.name} - ${wallet.balance}
-            </li>
-          ))}
-        </ul>
-        {selectedWallet && (
-          <div>
-            <h3>Selected Wallet:</h3>
-            <p>{selectedWallet.name} - ${selectedWallet.balance}</p>
-          </div>
-        )}
+    <>
+      <div style={styles.container}>
+        <header style={styles.header}>Dashboard</header>
+        <div>
+          <h2>Select a Wallet</h2>
+          <ul style={styles.walletList}>
+            {wallets.map(wallet => (
+              <li
+                key={wallet.id}
+                style={{
+                  ...styles.walletItem,
+                  ...(selectedWallet && selectedWallet.id === wallet.id
+                    ? styles.walletItemSelected
+                    : {}),
+                }}
+                onClick={() => handleWalletSelect(wallet)}
+              >
+                {wallet.name} - ${wallet.balance}
+              </li>
+            ))}
+          </ul>
+          {selectedWallet && (
+            <div>
+              <h3>Selected Wallet:</h3>
+              <p>{selectedWallet.name} - ${selectedWallet.balance}</p>
+            </div>
+          )}
+        </div>
+        <button style={styles.logoutButton} onClick={handleLogout}>
+          Logout
+        </button>
       </div>
-      <button style={styles.logoutButton} onClick={handleLogout}>
-        Logout
-      </button>
-    </div>
+      <TransferForm />
+    </>
   );
 };
 
