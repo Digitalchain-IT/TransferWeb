@@ -129,9 +129,9 @@ const Login: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <a href="#" style={styles.link}>
+          {/* <a href="#" style={styles.link}>
             Forgot password?
-          </a>
+          </a> */}
           <input
             type="submit"
             className="button"
@@ -141,14 +141,6 @@ const Login: React.FC = () => {
             onMouseOut={(e) => ((e.target as HTMLInputElement).style.background = styles.button.background)}
           />
         </form>
-        <div className="signup" style={styles.signup}>
-          <span className="signup">
-            Don't have an account?
-            <Link href="/signup" style={styles.link}>
-              Signup
-            </Link>
-          </span>
-        </div>
       </div>
       {showModal && <Modal message={message} onClose={closeModal} />}
     </div>
