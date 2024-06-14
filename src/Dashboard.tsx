@@ -136,8 +136,8 @@ const Dashboard: React.FC = () => {
             </div>
           )}
         </div>
+        <TransferForm />
       </div>
-      <TransferForm />
     </>
   );
 };
