@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TransferForm from './TransferForm';
 
 interface Wallet {
   wallet_id: string;
