@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
             const customerId = localStorage.getItem('customer_id');
             if (customerId) {
                 try {
-                    const response = await axios.get(`http://127.0.0.1:3000/customer-wallets/${customerId}`);
+                    const response = await axios.get(`http://34.46.187.223:3000/customer-wallets/${customerId}`);
                     setWallets(response.data);
                     setLoading(false);
                 } catch (error) {
@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
             };
 
             try {
-                const response = await axios.post(`http://127.0.0.1:1336/token/transfer/4F01E4B3DBB0`, requestBody, {
+                const response = await axios.post(`http://34.46.187.223:1336/token/transfer/4F01E4B3DBB0`, requestBody, {
                     headers: {
                         "Content-Type": "application/json"
                     }
