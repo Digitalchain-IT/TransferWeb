@@ -1,11 +1,8 @@
 {
-  "homepage": "http://aminajardali.github.io/TransferWeb",
-  "scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-},
+
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "http://aminajardali.github.io/TransferWeb",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -34,7 +31,9 @@
     "build": "react-scripts build",
     "dev": "tsc && node dist/server.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
