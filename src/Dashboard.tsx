@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
                 issuer: "SHA-256:3BC51062973C458D5A6F2D8D64A023246354AD7E064B1E4E009EC8A0699A3043",
                 amount: "10",
                 transferTo: "703277d7-5612-4a39-a99f-ac7d76caa9a2",
-                transferFrom: "1fea91b6-58cf-4315-8260-b06561578055"
+                transferFrom: "c8f7a2ab-5bae-4853-8bdd-f52b1153d1ca"
             };
 
             try {
@@ -59,6 +59,14 @@ const Dashboard: React.FC = () => {
                 alert(`Transfer failed: ${error.message || 'An unknown error occurred'}`);
             }
         }
+    };
+
+    const parameters = {
+        symbol: "AEDT",
+        issuer: "SHA-256:3BC51062973C458D5A6F2D8D64A023246354AD7E064B1E4E009EC8A0699A3043",
+        amount: "10",
+        transferTo: "703277d7-5612-4a39-a99f-ac7d76caa9a2",
+        transferFrom: "c8f7a2ab-5bae-4853-8bdd-f52b1153d1ca"
     };
 
     return (
@@ -85,6 +93,14 @@ const Dashboard: React.FC = () => {
                     <div>
                         <h3>Selected Wallet:</h3>
                         <p>{selectedWallet.bankname} - {selectedWallet.currency} {selectedWallet.amount}</p>
+                        <div className="request-body-box">
+                            <h4>Transfer Details:</h4>
+                            <p>Symbol: ${parameters.symbol}</p>
+                            <p>Issuer: ${parameters.issuer}</p>
+                            <p>Amount: ${parameters.amount}</p>
+                            <p>Transfer To: ${parameters.transferTo}</p>
+                            <p>Transfer From: ${parameters.transferFrom}</p>
+                        </div>
                         <button className="submit-button" onClick={handleTransfer}>
                             Submit
                         </button>

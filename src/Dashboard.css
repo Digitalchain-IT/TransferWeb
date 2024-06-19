@@ -3,6 +3,12 @@
     text-align: center;
     position: relative;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .header {
@@ -14,6 +20,7 @@
 .wallet-list {
     list-style-type: none;
     padding: 0;
+    width: 100%;
 }
 
 .wallet-item {
@@ -22,6 +29,7 @@
     background: #f0f0f0;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
 }
 
 .wallet-item-selected {
@@ -44,12 +52,20 @@
     transform: translateX(-50%);
 }
 
-.logout-button {
-    margin-top: 1rem;
-    padding: 10px 20px;
-    background: #05668D;
-    color: #fff;
-    border: none;
+.request-body-box {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     border-radius: 5px;
-    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+
+.request-body-box h4 {
+    margin-top: 0;
+    font-size: 1.2rem;
 }
