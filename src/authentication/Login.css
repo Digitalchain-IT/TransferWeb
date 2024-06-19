@@ -1,96 +1,90 @@
+/* Ensure the html and body take full height and remove default margin */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Flexbox settings on body to center the container */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 430px;
-    width: 100%;
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .form {
-    padding: 2rem;
-  }
-  
-  .header {
-    font-size: 2rem;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .input {
-    height: 60px;
-    width: 100%;
-    padding: 0 15px;
-    font-size: 17px;
-    margin-bottom: 1.3rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    outline: none;
-    position: relative;
-  }
-  
-  .passwordInputContainer {
-    position: relative;
-    height: 60px;
-    margin-bottom: 1.3rem;
-  }
-  
-  .passwordInput {
-    height: 100%;
-    width: 100%;
-    padding: 0 15px;
-    font-size: 17px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    outline: none;
-    padding-right: 40px;
-    box-sizing: border-box;
-  }
-  
-  .toggleButton {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-  }
-  
-  .button {
-    color: #fff;
-    background: #05668D;
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-top: 1.7rem;
-    cursor: pointer;
-    transition: 0.4s;
-  }
-  
-  .button:hover {
-    background: #006653;
-  }
-  
-  .link {
-    font-size: 16px;
-    color: #05668D;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
-  .signup {
-    font-size: 17px;
-    text-align: center;
-  }  
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+  padding: 2rem;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  position: relative;
+}
+
+.passwordInputContainer {
+  position: relative;
+  height: 60px;
+  margin-bottom: 1.3rem;
+}
+
+.passwordInput {
+  height: 100%;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.toggleButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.button {
+  color: #fff;
+  background: #05668D;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.button:hover {
+  background: #006653;
+}
