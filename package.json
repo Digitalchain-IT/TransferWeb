@@ -2,7 +2,7 @@
 
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "http://aminajardali.github.io/TransferWeb",
+  "homepage": "http://aminajardali.github.io/login",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
