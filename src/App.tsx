@@ -11,6 +11,7 @@ const App: React.FC = () => {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/">
         <Redirect to="/login" />
+        hello
       </Route>
     </div>
   );
