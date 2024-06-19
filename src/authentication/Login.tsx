@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     const credentials = { email, password };
 
     try {
-      const response = await axios.post('http://127.0.0.1:3000/login', credentials, {
+      const response = await axios.post('http://34.46.187.223:3000/login', credentials, {
         headers: { 'Content-Type': 'application/json' },
       });
 
