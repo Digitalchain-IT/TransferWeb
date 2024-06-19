@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import apiClient from './apiClient';
+import axios from 'axios';
 import './TransferForm.css';
 
 const TransferForm: React.FC = () => {
@@ -56,7 +56,7 @@ const TransferForm: React.FC = () => {
       };
 
       try {
-        const response = await apiClient.post(`/token/transfer/${shorthash}`, requestData);
+        const response = await axios.post(`/token/transfer/${shorthash}`, requestData);
 
         if (response.status === 200) {
           console.log('Response:', response.data);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import apiClient from './apiClient';
+import axios from 'axios'; // Make sure axios is installed
 import './Dashboard.css'; // Import the external CSS file
 
 interface Wallet {
@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
             const customerId = localStorage.getItem('customer_id');
             if (customerId) {
                 try {
-                    const response = await apiClient.get(`http://127.0.0.1:3000/customer-wallets/${customerId}`);
+                    const response = await axios.get(`http://127.0.0.1:3000/customer-wallets/${customerId}`);
                     setWallets(response.data);
                     setLoading(false);
                 } catch (error) {
@@ -62,11 +62,6 @@ const Dashboard: React.FC = () => {
                 alert(`Transfer failed: ${error.message || 'An unknown error occurred'}`);
             }
         }
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('customer_id');
-        window.location.href = '/login';
     };
 
     return (
